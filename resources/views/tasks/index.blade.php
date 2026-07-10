@@ -4,10 +4,11 @@
 
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3 class="fw-bold mb-0">Daftar Task</h3>
-        <a href="{{ route('tasks.create') }}" class="btn btn-primary">
-            + Tambah Task
-        </a>
+        <div>
+            <div class="eyebrow mb-1">Kelola</div>
+            <h3 class="fw-bold mb-0">Daftar Task</h3>
+        </div>
+        <a href="{{ route('tasks.create') }}" class="btn btn-primary">+ Tambah Task</a>
     </div>
 
     <div class="card border-0 shadow-sm mb-3">
@@ -17,7 +18,6 @@
                     <input type="text" name="search" value="{{ $search }}"
                            class="form-control" placeholder="Cari judul atau deskripsi task...">
                 </div>
-
                 <div class="col-md-4">
                     <select name="status" class="form-select">
                         <option value="">Semua Status</option>
@@ -26,7 +26,6 @@
                         <option value="done" {{ $statusFilter === 'done' ? 'selected' : '' }}>Done</option>
                     </select>
                 </div>
-
                 <div class="col-md-2 d-grid">
                     <button type="submit" class="btn btn-outline-primary">Filter</button>
                 </div>
@@ -42,8 +41,8 @@
                 </div>
             @else
                 <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead class="table-light">
+                    <table class="table table-modern align-middle mb-0">
+                        <thead>
                             <tr>
                                 <th>Judul</th>
                                 <th>Prioritas</th>
@@ -54,28 +53,27 @@
                         </thead>
                         <tbody>
                             @foreach ($tasks as $task)
+                                @php
+                                    $spine = ['high' => 'var(--danger)', 'medium' => 'var(--accent)', 'low' => '#9B9FBE'][$task->priority] ?? 'var(--border)';
+                                @endphp
                                 <tr>
-                                    <td>
-                                        <a href="{{ route('tasks.show', $task) }}" class="text-decoration-none fw-semibold">
+                                    <td class="priority-cell" style="--spine-color: {{ $spine }};">
+                                        <a href="{{ route('tasks.show', $task) }}" class="text-decoration-none fw-semibold" style="color: var(--ink);">
                                             {{ $task->title }}
                                         </a>
                                     </td>
                                     <td><x-priority-badge :priority="$task->priority" /></td>
                                     <td><x-status-badge :status="$task->status" /></td>
-                                    <td>
+                                    <td style="font-family: var(--font-mono); font-size:.85rem;">
                                         {{ $task->deadline ? $task->deadline->format('d M Y') : '-' }}
                                     </td>
                                     <td class="text-end">
-                                        <a href="{{ route('tasks.edit', $task) }}" class="btn btn-sm btn-outline-secondary">
-                                            Edit
-                                        </a>
+                                        <a href="{{ route('tasks.edit', $task) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
                                         <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="d-inline"
                                               onsubmit="return confirm('Yakin ingin menghapus task ini?');">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-outline-danger">
-                                                Hapus
-                                            </button>
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">Hapus</button>
                                         </form>
                                     </td>
                                 </tr>

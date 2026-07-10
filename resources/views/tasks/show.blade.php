@@ -4,7 +4,10 @@
 
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3 class="fw-bold mb-0">Detail Task</h3>
+<div>
+    <div class="eyebrow mb-1">Detail</div>
+    <h3 class="fw-bold mb-0">Detail Task</h3>
+</div>
         <a href="{{ route('tasks.index') }}" class="btn btn-outline-secondary btn-sm">
             &larr; Kembali
         </a>

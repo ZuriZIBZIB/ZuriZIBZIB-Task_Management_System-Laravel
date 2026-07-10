@@ -1,1 +1,214 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+
+:root {
+    --ink: #1B1F3B;
+    --ink-soft: #5B6083;
+    --canvas: #F6F5F1;
+    --surface: #FFFFFF;
+    --brand: #2B2F77;
+    --brand-dark: #1D2057;
+    --brand-light: #4A4FB8;
+    --accent: #E8A33D;
+    --accent-soft: #FCEED8;
+    --success: #2E8B57;
+    --danger: #D64550;
+    --border: #E6E3DA;
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--canvas);
+    color: var(--ink);
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+}
+
+/* === Buttons === */
+.btn { border-radius: 8px; font-weight: 500; }
+.btn-primary { background-color: var(--brand); border-color: var(--brand); }
+.btn-primary:hover, .btn-primary:focus { background-color: var(--brand-dark); border-color: var(--brand-dark); }
+.btn-outline-primary { color: var(--brand); border-color: var(--brand); }
+.btn-outline-primary:hover { background-color: var(--brand); border-color: var(--brand); }
+.btn-link { color: var(--brand); }
+
+/* === Utilities override === */
+.bg-primary { background-color: var(--brand) !important; }
+.text-primary { color: var(--brand) !important; }
+.bg-warning { background-color: var(--accent) !important; }
+.text-warning { color: var(--accent) !important; }
+.bg-success { background-color: var(--success) !important; }
+.text-success { color: var(--success) !important; }
+.bg-danger { background-color: var(--danger) !important; }
+.text-danger { color: var(--danger) !important; }
+
+/* === Cards === */
+.card { border-radius: 14px; border: 1px solid var(--border); }
+
+/* === Navbar === */
+.navbar.bg-primary { background-color: var(--brand-dark) !important; }
+.navbar-brand { font-weight: 700; letter-spacing: 0; }
+.nav-link.active { color: #fff !important; position: relative; }
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    left: .5rem; right: .5rem; bottom: -2px;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+/* === Forms === */
+.form-control, .form-select {
+    border-radius: 8px;
+    border-color: var(--border);
+}
+.form-control:focus, .form-select:focus {
+    border-color: var(--brand-light);
+    box-shadow: 0 0 0 .2rem rgba(43, 47, 119, .12);
+}
+.form-label { font-weight: 500; font-size: .88rem; color: var(--ink-soft); }
+
+/* === Alerts === */
+.alert-success { background: #E3F3EA; color: #1F6E44; border: 1px solid #BFE3CE; border-radius: 10px; }
+.alert-danger { background: #FBEAEA; color: #A43530; border: 1px solid #F1C6C4; border-radius: 10px; }
+
+/* === Table === */
+.table-modern thead th {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--border) !important;
+    background: transparent;
+}
+.table-modern td { vertical-align: middle; border-color: var(--border); }
+.table-modern tbody tr:hover { background-color: #FAFAF7; }
+
+/* === Pagination === */
+.page-link { color: var(--brand); border-color: var(--border); }
+.page-item.active .page-link { background-color: var(--brand); border-color: var(--brand); }
+
+/* === Dashboard Stat Cards (Signature) === */
+.stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--stat-color, var(--brand));
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+}
+.stat-label {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: .35rem;
+}
+.stat-value {
+    font-family: var(--font-display);
+    font-size: 2.1rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* === Priority Spine (Signature) === */
+.priority-cell { box-shadow: inset 4px 0 0 0 var(--spine-color, var(--border)); }
+
+/* === Badges === */
+.badge-dot {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-family: var(--font-mono);
+    font-size: .76rem;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: .3rem .7rem;
+}
+.badge-dot .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--dot-color); }
+
+.badge-status {
+    font-family: var(--font-mono);
+    font-size: .76rem;
+    border-radius: 999px;
+    padding: .3rem .75rem;
+    background: var(--status-bg);
+    color: var(--status-fg);
+}
+
+/* === Eyebrow label === */
+.eyebrow {
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+
+/* === Auth Split Layout === */
+.auth-body { margin: 0; min-height: 100vh; background: var(--canvas); }
+.auth-shell { display: flex; min-height: 100vh; }
+.auth-brand {
+    flex: 1 1 42%;
+    background: var(--brand-dark);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 3.5rem;
+    position: relative;
+    overflow: hidden;
+}
+.auth-brand-mark {
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    letter-spacing: .2em;
+    border: 1px solid rgba(255,255,255,.35);
+    display: inline-block;
+    padding: .3rem .65rem;
+    border-radius: 999px;
+    width: fit-content;
+    margin-bottom: 2rem;
+}
+.auth-brand-title {
+    font-family: var(--font-display);
+    font-size: 2.3rem;
+    font-weight: 600;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+}
+.auth-brand-copy { color: rgba(255,255,255,.72); max-width: 320px; font-size: .95rem; }
+.auth-brand-dots {
+    position: absolute;
+    right: -60px; bottom: -60px;
+    width: 260px; height: 260px;
+    background-image: radial-gradient(rgba(255,255,255,.18) 2px, transparent 2px);
+    background-size: 18px 18px;
+    border-radius: 50%;
+}
+.auth-panel {
+    flex: 1 1 58%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: var(--surface);
+}
+.auth-panel-inner { width: 100%; max-width: 380px; }
+.auth-panel-title { font-family: var(--font-display); font-weight: 700; margin-bottom: 1.5rem; }
+
+@media (max-width: 860px) {
+    .auth-shell { flex-direction: column; }
+    .auth-brand { padding: 2.5rem 2rem; }
+    .auth-brand-title { font-size: 1.8rem; }
+}

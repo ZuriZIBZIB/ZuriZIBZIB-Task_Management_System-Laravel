@@ -1,12 +1,14 @@
 @props(['priority'])
 
 @php
-    $color = match ($priority) {
-        'high' => 'danger',
-        'medium' => 'warning',
-        'low' => 'secondary',
-        default => 'light',
-    };
+    $map = [
+        'high'   => ['color' => 'var(--danger)', 'label' => 'High'],
+        'medium' => ['color' => 'var(--accent)', 'label' => 'Medium'],
+        'low'    => ['color' => '#9B9FBE', 'label' => 'Low'],
+    ];
+    $item = $map[$priority] ?? ['color' => 'var(--ink-soft)', 'label' => ucfirst($priority)];
 @endphp
 
-<span class="badge bg-{{ $color }}">{{ ucfirst($priority) }}</span>
+<span class="badge-dot" style="--dot-color: {{ $item['color'] }}">
+    <span class="dot"></span>{{ $item['label'] }}
+</span>
