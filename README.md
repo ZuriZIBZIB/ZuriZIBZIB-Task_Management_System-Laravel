@@ -159,7 +159,7 @@ resources/views/
 
 | Email | Password |
 |---|---|
-| demo@example.com | password |
+| mozi@gmail.com | password |
 
 ## 👤 Dibuat Oleh
 
